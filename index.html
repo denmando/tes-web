@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEBUTUHAN HOSTING</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        .panel-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .panel-item {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            background-color: #ffffff;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .panel-item:hover {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .panel-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        .panel-item h3 {
+            color: #34495e;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.4em;
+        }
+
+        .panel-item .description {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-bottom: 15px;
+            min-height: 60px; /* Jaga tinggi deskripsi konsisten */
+        }
+
+        .panel-item .price-options label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .panel-item .price-options select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+            font-size: 0.95em;
+        }
+        
+        .panel-item .current-price {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 15px;
+        }
+        .panel-item .current-price span {
+            font-size: 1.3em;
+        }
+
+        .buy-button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .buy-button:hover {
+            background-color: #2980b9;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Daftar Pilihan Kebutuhan Hosting</h1>
+
+        <div class="panel-list" id="panelList">
+            <!-- Panel items akan di-generate oleh JavaScript -->
+        </div>
+
+        <div class="footer">
+            <p>© 2025 FUPEI PEDIA. Proses pemesanan manual via WhatsApp.</p>
+        </div>
+    </div>
+
+    <script>
+        // =======================================================================
+        // KONFIGURASI (GANTI SESUAI KEBUTUHAN ANDA)
+        // =======================================================================
+        const nomorWhatsAppAdmin = "6285179732934"; // GANTI DENGAN NOMOR WA ANDA (Format 62xxx)
+        const namaToko = "FUPEI PEDIA"; // GANTI DENGAN NAMA TOKO ANDA
+
+        const panelsData = [
+            {
+                id: "panel-a",
+                nama: "Panel Petrodactyl Privat",
+                deskripsi: "Panel dengan peforma tinggi dan berkualitas.",
+                gambar: "https://img1.pixhost.to/images/6031/604219804_fajarshop.jpg", // Ganti dengan URL gambar Anda
+                pilihanHarga: [
+                    { durasi: "1GB ", harga: 5.000, hargaDisplay: "Rp 5.000" },
+                    { durasi: "2GB", harga: 6.000, hargaDisplay: "Rp 6.000" },
+                    { durasi: "3GB", harga: 7.000, hargaDisplay: "Rp 7.000" },
+                    { durasi: "4GB ", harga: 8.000, hargaDisplay: "Rp 8.000" },
+                    { durasi: "5GB", harga: 9.000, hargaDisplay: "Rp 9.000" },
+                    { durasi: "6GB", harga: 10.000, hargaDisplay: "Rp 10.000" },
+                    { durasi: "7GB ", harga: 11.000, hargaDisplay: "Rp 11.000" },
+                    { durasi: "8GB", harga: 12.000, hargaDisplay: "Rp 12.000" },
+                    { durasi: "9GB", harga: 13.000, hargaDisplay: "Rp 13.000" },
+                    { durasi: "10GB ", harga: 15.000, hargaDisplay: "Rp 15.000" },
+                    { durasi: "UNLI", harga: 15.000, hargaDisplay: "Rp 15.000" },
+                    { durasi: "RESELLER", harga: 30.000, hargaDisplay: "Rp 30.000" },
+                    { durasi: "RESELLER MANEN", harga: 70.000, hargaDisplay: "Rp 70.000" },
+                    { durasi: "Pilihan Custom", harga: 0, hargaDisplay: "Hubungi Admin" }
+                ]
+            },
+            {
+                id: "panel-b",
+                nama: "vps",
+                deskripsi: "Layanan vps berkualitas dan ber garansi.",
+                gambar: "https://img1.pixhost.to/images/6031/604228836_fajarshop.jpg", // Ganti dengan URL gambar Anda
+                pilihanHarga: [
+                    { durasi: "RAM 2 CORE 2", harga: 30.000, hargaDisplay: "Rp 30.000" },
+                    { durasi: "RAM 4 CORE 2", harga: 40.000, hargaDisplay: "Rp 40.000" },
+                    { durasi: "RAM 8 CORE 4", harga: 50.000, hargaDisplay: "Rp 50.000" },
+                    { durasi: "RAM 16 CORE 4", harga: 60.000, hargaDisplay: "Rp 60.000" },
+                    { durasi: "RAM 16 CORE 8", harga: 70.000, hargaDisplay: "Rp 70.000" }
+                ]
+            },
+            {
+                id: "panel-c",
+                nama: "AKUN CLOUD",
+                deskripsi: "Semua fitur terbaik untuk performa maksimal dan skala besar.",
+                gambar: "https://img1.pixhost.to/images/6032/604230539_fajarshop.jpg", // Ganti dengan URL gambar Anda
+                pilihanHarga: [
+                    { durasi: "DO 3 DROP", harga: 130.000, hargaDisplay: "Rp 130.000" },
+                    { durasi: "DO 10 DROP", harga: 160.000, hargaDisplay: "Rp 160.000" },
+                    { durasi: "ALIBABA CLOUD RAM 1 CORE 1,1 BULAN", harga: 70.000, hargaDisplay: "Rp 70.000" },
+                    { durasi: "ALIBABA CLOUD RAM 2 CORE 2,1 THN", harga: 70.000, hargaDisplay: "Rp 70.000" },
+                    { durasi: "Pilihan Custom", harga: 0, hargaDisplay: "Hubungi Admin" } // Harga 0 untuk custom
+                ]
+            },
+            {
+                id: "panel-d",
+                nama: "SEWA BOT",
+                deskripsi: "Layanan vps berkualitas dan ber garansi.",
+                gambar: "https://files.catbox.moe/02bbq8.jpg", // Ganti dengan URL gambar Anda
+                pilihanHarga: [
+                    { durasi: "PUSHKONTAK / MINGGU", harga: 10.000, hargaDisplay: "Rp 10.000" },
+                    { durasi: "BOT STORE GC", harga: 12.000, hargaDisplay: "Rp 12.000" },
+                    { durasi: "BOT TOPUP OPERAN + PANEL", harga: 27.000, hargaDisplay: "Rp 27.000" },
+                 ]
+            },
+            // Tambahkan produk panel lain di sini
+        ];
+
+        // =======================================================================
+        // FUNGSI UNTUK MEMBUAT TAMPILAN PANEL
+        // =======================================================================
+        function displayPanels() {
+            const panelListContainer = document.getElementById('panelList');
+            if (!panelListContainer) return;
+
+            panelListContainer.innerHTML = ''; // Kosongkan dulu
+
+            panelsData.forEach(panel => {
+                const panelElement = document.createElement('div');
+                panelElement.classList.add('panel-item');
+                panelElement.setAttribute('id', `item-${panel.id}`);
+
+                // Membuat select untuk pilihan harga
+                let optionsHTML = '';
+                panel.pilihanHarga.forEach((pilihan, index) => {
+                    optionsHTML += `<option value="${index}">${pilihan.durasi} - ${pilihan.hargaDisplay}</option>`;
+                });
+
+                panelElement.innerHTML = `
+                    <img src="${panel.gambar}" alt="${panel.nama}">
+                    <h3>${panel.nama}</h3>
+                    <div class="description">${panel.deskripsi}</div>
+                    <div class="price-options">
+                        <label for="harga-${panel.id}">Pilih Harga:</label>
+                        <select id="harga-${panel.id}" name="harga-${panel.id}" onchange="updateHarga('${panel.id}')">
+                            ${optionsHTML}
+                        </select>
+                    </div>
+                    <div class="current-price" id="current-price-${panel.id}">
+                        Harga: <span>${panel.pilihanHarga[0].hargaDisplay}</span>
+                    </div>
+                    <button class="buy-button" onclick="prosesBeli('${panel.id}')">Beli Panel Ini</button>
+                `;
+                panelListContainer.appendChild(panelElement);
+            });
+        }
+
+        // Fungsi untuk update tampilan harga saat pilihan di select berubah
+        function updateHarga(panelId) {
+            const panel = panelsData.find(p => p.id === panelId);
+            const selectElement = document.getElementById(`harga-${panelId}`);
+            const hargaDisplayElement = document.getElementById(`current-price-${panelId}`);
+
+            if (panel && selectElement && hargaDisplayElement) {
+                const selectedOptionIndex = selectElement.value;
+                const hargaTerpilih = panel.pilihanHarga[selectedOptionIndex];
+                hargaDisplayElement.innerHTML = `Harga: <span>${hargaTerpilih.hargaDisplay}</span>`;
+            }
+        }
+
+        // Fungsi untuk memproses pembelian dan mengarahkan ke WhatsApp
+        function prosesBeli(panelId) {
+            const panel = panelsData.find(p => p.id === panelId);
+            const selectElement = document.getElementById(`harga-${panelId}`);
+
+            if (!panel || !selectElement) {
+                alert("Terjadi kesalahan, panel tidak ditemukan.");
+                return;
+            }
+
+            const selectedOptionIndex = selectElement.value;
+            const pilihanTerpilih = panel.pilihanHarga[selectedOptionIndex];
+
+            // Konfirmasi sebelum mengirim
+            const konfirmasi = confirm(
+                `Anda akan memesan:\n` +
+                `Panel: ${panel.nama}\n` +
+                `Durasi: ${pilihanTerpilih.durasi}\n` +
+                `Harga: ${pilihanTerpilih.hargaDisplay}\n\n` +
+                `Lanjutkan untuk mengirim pesanan via WhatsApp?`
+            );
+
+            if (konfirmasi) {
+                let pesanWhatsApp = `Halo ${namaToko},\n\nSaya ingin memesan panel dengan detail berikut:\n\n` +
+                                   `Nama Panel: *${panel.nama}*\n` +
+                                   `Pilihan Durasi: *${pilihanTerpilih.durasi}*\n` +
+                                   `Harga: *${pilihanTerpilih.hargaDisplay}*\n\n` +
+                                   `Mohon informasi langkah selanjutnya untuk pembayaran dan aktivasi.\n\n` +
+                                   `Terima kasih.`;
+
+                // Jika harga 0 atau "Hubungi Admin", tambahkan catatan
+                if (pilihanTerpilih.harga === 0) {
+                    pesanWhatsApp += `\n*(Saya memilih opsi "${pilihanTerpilih.durasi}", mohon info lebih lanjut mengenai harga custom)*`;
+                }
+
+                const encodedPesan = encodeURIComponent(pesanWhatsApp);
+                const urlWhatsApp = `https://wa.me/${nomorWhatsAppAdmin}?text=${encodedPesan}`;
+
+                // Buka link WhatsApp di tab baru
+                window.open(urlWhatsApp, '_blank');
+            }
+        }
+
+        // Panggil fungsi untuk menampilkan panel saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', displayPanels);
+    </script>
+
+</body>
+</html>
